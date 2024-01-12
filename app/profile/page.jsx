@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Profile from '@components/Profile';
 
 const MyProfile = () => {
-  const { data: session } = useSession;
+  const { data: session } = useSession();
 
   const [myPosts, setMyPosts] = useState([]);
 
@@ -19,7 +19,9 @@ const MyProfile = () => {
       setMyPosts(data);
     };
 
-    if (session?.user.id) fetchPosts();
+    if (session?.user.id) {
+      fetchPosts();
+    }
   }, [session?.user.id]);
 
   const handleEdit = () => {};
